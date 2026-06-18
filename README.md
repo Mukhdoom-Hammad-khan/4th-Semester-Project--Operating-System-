@@ -36,8 +36,8 @@ This project is a full-stack web application designed to help students and resea
 
 | Name | Roll Number | Role |
 |------|-------------|------|
-| **Mukhdoom Hammad Khan** | 2024F-BSE-074 | Project Lead & Full-Stack Developer |
-| **Muhammad Huzaifa Ali** | 2024F-BSE-070 | Backend Developer & Algorithm Implementation |
+| **Mukhdoom Hammad Khan** | 2024F-BSE-074 | Project Lead & Algorithm Implementation |
+| **Muhammad Huzaifa Ali** | 2024F-BSE-070 | Backend Developer |
 | **Ahmed Raza** | 2024F-BSE-065 | Frontend Developer & UI/UX |
 | **Ajwad Rehman** | 2024F-BSE-053 | Testing & Documentation |
 
