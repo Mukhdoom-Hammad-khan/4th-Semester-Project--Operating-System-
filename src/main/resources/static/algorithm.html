@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm - CPU Scheduling Algorithm Comparator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Gradient -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                    <span>CPU Scheduler Pro</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Input</a>
+                    <a href="calculations.html" class="nav-link">Calculations</a>
+                    <a href="algorithm.html" class="nav-link active">Algorithm</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">ACV-RR</span> Algorithm
+                </h1>
+                <p class="hero-subtitle">
+                    Adaptive Coefficient of Variation Round Robin Scheduling
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="single-panel">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-code"></i> ACV-RR Algorithm</h2>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="algo-description">
+                            <h3><i class="fas fa-lightbulb"></i> Algorithm Overview</h3>
+                            <p>
+                                ACV-RR (Adaptive Coefficient of Variation Round Robin) is a dynamic scheduling algorithm 
+                                that adjusts time quantum based on process characteristics to minimize context switches 
+                                while maintaining fairness.
+                            </p>
+                            
+                            <div class="features-grid">
+                                <div class="feature-card">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <h4>Dynamic Quantum</h4>
+                                    <p>Adjusts based on burst time and remaining time</p>
+                                </div>
+                                <div class="feature-card">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <h4>Fair Scheduling</h4>
+                                    <p>Ensures all processes get CPU time</p>
+                                </div>
+                                <div class="feature-card">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <h4>Reduced Context Switches</h4>
+                                    <p>Optimizes quantum to minimize overhead</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pseudocode-container">
+                            <h3><i class="fas fa-file-code"></i> Pseudocode</h3>
+                            <pre class="pseudocode"><code>Algorithm: ACV-RR (Adaptive Coefficient of Variation Round Robin)
+
+1. Initialize:
+   CurrentTime ← 0
+   ReadyQueue ← Empty
+   RemainingBurstTime ← BurstTime of each process
+   CompletedProcesses ← 0
+
+2. While CompletedProcesses < TotalProcesses
+   Add all arrived processes to ReadyQueue
+   
+   If ReadyQueue is empty
+      CurrentTime ← CurrentTime + 1
+      Continue
+   
+   Calculate:
+      Mean (μ)
+      Standard Deviation (σ)
+      Coefficient of Variation (CV)
+      MinBT ← Minimum Remaining Burst Time
+      MaxBT ← Maximum Remaining Burst Time
+   
+   If CV < 0.20
+      TQ ← (MinBT + MaxBT + μ) / 2
+   Else If CV < 0.50
+      TQ ← (MinBT + MaxBT + μ) / 3
+   Else If CV < 0.70
+      TQ ← (MaxBT × μ) / 3
+   Else
+      TQ ← (MinBT + μ) / 4
+   
+   TQ ← Ceiling(TQ)
+   
+   Sort ReadyQueue according to Remaining Burst Time (SJF)
+   
+   For each process Pi in ReadyQueue
+      Execute Pi for:
+         min(TQ, RemainingBurstTime(Pi))
+      Update CurrentTime
+      Update RemainingBurstTime(Pi)
+      Add newly arrived processes
+      
+      If RemainingBurstTime(Pi) > 0
+         Reinsert Pi into ReadyQueue
+      Else
+         Mark Pi as completed
+
+3. For each process Pi
+   Calculate Waiting Time:
+      WaitingTime(Pi) = (Start Time of First Execution − Arrival Time)
+                      + Σ(Start Time of Each Subsequent Execution − End Time of Previous Execution)
+   
+   Calculate Turnaround Time:
+      TurnaroundTime(Pi) = WaitingTime(Pi) + BurstTime(Pi)
+
+4. Calculate:
+   Average Waiting Time
+   Average Turnaround Time
+   Context Switches
+
+5. Return:
+   Gantt Chart
+   Waiting Times
+   Turnaround Times
+   Average WT
+   Average TAT
+   Context Switches</code></pre>
+                        </div>
+                        
+                        <div class="algo-description">
+                            <h3><i class="fas fa-chart-line"></i> Key Advantages</h3>
+                            <ul class="advantages-list">
+                                <li><i class="fas fa-check-circle"></i> <strong>Adaptive Quantum:</strong> Automatically adjusts based on remaining burst time</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Efficient for Short Processes:</strong> Completes short processes quickly (≤4 time units)</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Handles Long Processes:</strong> Uses larger quantum (up to 8) for long jobs</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Reduced Overhead:</strong> Fewer context switches compared to fixed quantum RR</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Maintains Fairness:</strong> Round-robin nature ensures no starvation</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CPU Scheduler Pro | OS Project - SEM 4</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
